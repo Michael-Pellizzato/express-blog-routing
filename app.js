@@ -14,10 +14,12 @@ Provare a restituire la lista dei post dalla rotta index, in formato json
 Provare a restituire un singolo post dalla rotta show, sempre in formato json
 Buon Lavoro*/
 
-const express = require('express')
+
+const express = require("express")
 const app = express()
 const port = 3000
 app.use(express.static("public"))
+const postRouter = require("./routers/posts")
 
 app.get('/', (req, res) => {
     const post = [
@@ -55,7 +57,10 @@ app.get('/', (req, res) => {
     //res.type('json').send(post)    -forma intera-
     res.json(post)
   })
+  
+  app.use("/posts", postRouter)
 
   app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
   })
+
